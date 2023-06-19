@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:id="@+id/rootLayout">
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="시작" />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="중지" />
+
+        <Button
+            android:id="@+id/previousPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="이전 화면" />
+
+        <Button
+            android:id="@+id/nextPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="다음 화면" />
+
+        <Button
+            android:id="@+id/closeHeroButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="큰화면 닫기" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/frameContainer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 칼럼 1 START -->
+            <LinearLayout
+                android:id="@+id/container1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- 비디오 컨테이너 1 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer1"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 1 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 1 END -->
+
+                    <!-- 스트림없음 1 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam1ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream1TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream1TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 1 END -->
+
+                    <!-- 명칭 1 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name1TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 1 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 1 END -->
+
+                <!-- 비디오 컨테이너 2 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer2"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 2 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 2 END -->
+
+                    <!-- 스트림없음 2 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam2ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream2TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream2TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 2 END -->
+
+                    <!-- 명칭 2 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name2TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 2 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 2 END -->
+
+            </LinearLayout>
+            <!-- 칼럼 1 END -->
+
+            <!-- 칼럼 2 START -->
+            <LinearLayout
+                android:id="@+id/container2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="1dp"
+                android:orientation="vertical">
+
+                <!-- 비디오 컨테이너 3 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer3"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 3 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 3 END -->
+
+                    <!-- 스트림없음 3 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam3ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream3TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream3TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 3 END -->
+
+                    <!-- 명칭 3 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name3TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 3 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 3 END -->
+
+                <!-- 비디오 컨테이너 4 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer4"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 4 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 4 END -->
+
+                    <!-- 스트림없음 4 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam4ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream4TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream4TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 4 END -->
+
+                    <!-- 명칭 4 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name4TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 4 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 2 END -->
+
+            </LinearLayout>
+            <!-- 칼럼 2 END -->
+
+            <!-- 칼럼 3 START -->
+            <LinearLayout
+                android:id="@+id/container3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="1dp"
+                android:orientation="vertical">
+
+                <!-- 비디오 컨테이너 5 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer5"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 5 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 5 END -->
+
+                    <!-- 스트림없음 5 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam5ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream5TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream5TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 5 END -->
+
+                    <!-- 명칭 5 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name5TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 5 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 5 END -->
+
+                <!-- 비디오 컨테이너 6 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer6"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 6 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 6 END -->
+
+                    <!-- 스트림없음 6 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam6ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream6TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream6TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 6 END -->
+
+                    <!-- 명칭 6 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name6TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 6 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 6 END -->
+
+            </LinearLayout>
+            <!-- 칼럼 3 END -->
+
+            <!-- 칼럼 4 START -->
+            <LinearLayout
+                android:id="@+id/container4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="1dp"
+                android:orientation="vertical">
+
+                <!-- 비디오 컨테이너 7 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer7"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 7 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 7 END -->
+
+                    <!-- 스트림없음 7 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam7ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream7TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream7TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 7 END -->
+
+                    <!-- 명칭 7 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name7TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 7 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 7 END -->
+
+                <!-- 비디오 컨테이너 8 START -->
+                <FrameLayout
+                    android:id="@+id/videoLayoutContainer8"
+                    android:layout_width="320dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 8 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/videoLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 8 END -->
+
+                    <!-- 스트림없음 8 START -->
+                    <RelativeLayout
+                        android:id="@+id/noStreamLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/cam8ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/noStream8TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/noStream8TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 8 END -->
+
+                    <!-- 명칭 8 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/name8TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 8 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 8 END -->
+
+            </LinearLayout>
+            <!-- 칼럼 4 END -->
+
+        </LinearLayout>
+
+        <!-- Hero 프레임 -->
+        <LinearLayout
+            android:id="@+id/frameContainer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 칼럼 1 START -->
+            <LinearLayout
+                android:id="@+id/heroContainer1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <!-- 비디오 컨테이너 1 START -->
+                <FrameLayout
+                    android:id="@+id/heroVideoLayoutContainer1"
+                    android:layout_width="640dp"
+                    android:layout_height="480dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 1 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/heroVideoLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 1 END -->
+
+                    <!-- 스트림없음 1 START -->
+                    <RelativeLayout
+                        android:id="@+id/heroNoStreamLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/heroCam1ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/heroNoStream1TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/heroNoStream1TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 1 END -->
+
+                    <!-- 명칭 1 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/heroName1TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 1 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 1 END -->
+
+                <!-- 비디오 컨테이너 2 START -->
+                <FrameLayout
+                    android:id="@+id/heroVideoLayoutContainer2"
+                    android:layout_width="640dp"
+                    android:layout_height="480dp"
+                    android:layout_marginStart="1dp"
+                    android:orientation="vertical">
+
+                    <!-- 비디오 2 START -->
+                    <org.videolan.libvlc.util.VLCVideoLayout
+                        android:id="@+id/heroVideoLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <!-- 비디오 2 END -->
+
+                    <!-- 스트림없음 2 START -->
+                    <RelativeLayout
+                        android:id="@+id/heroNoStreamLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/heroCam2ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/rect_black" />
+
+                        <TextView
+                            android:id="@+id/heroNoStream2TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="No Stream"
+                            android:textColor="#A4AAE0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <pl.droidsonroids.gif.GifImageView
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/heroNoStream2TextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/heartbeat2" />
+
+                    </RelativeLayout>
+                    <!-- 스트림없음 2 END -->
+
+                    <!-- 명칭 2 START -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="4dp"
+                        app:cardBackgroundColor="#881D40AA"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/heroName2TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text=""
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <!-- 명칭 2 END -->
+
+                </FrameLayout>
+                <!-- 비디오 컨테이너 2 END -->
+
+            </LinearLayout>
+            <!-- 칼럼 1 END -->
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>
