@@ -14,8 +14,17 @@ import org.techtown.rtspviewer.rtsp.RtspEvent
 import org.techtown.rtspviewer.rtsp.RtspListener
 import org.techtown.rtspviewer.rtsp.RtspViewer
 import org.videolan.libvlc.util.VLCVideoLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
     lateinit var binding: ActivityMainBinding
 
     val viewerList = ArrayList<RtspViewer>()
@@ -29,6 +38,12 @@ class MainActivity : AppCompatActivity() {
     val nameLayoutList = ArrayList<TextView>()
 
     var pageIndex = 0
+
+    var camIpMap = mutableMapOf<String, Pair<String, String>>()
+
+    val camId = listOf("LTR-SMC-001-F", "LTR-SMC-001-B")
+
+    private lateinit var timer: Timer
 
     // 스크린 모드 (노스트림, 오프닝, HTTP, RTSP)
     enum class ScreenMode {
@@ -48,18 +63,28 @@ class MainActivity : AppCompatActivity() {
         // 뷰어 객체 초기화
         initRtspViewer()
 
-        // CCTV 0 : TEST
-        var url = "rtsp://192.168.43.45:1935"
-        urlList.add(url)
-        nameList.add("테스트1")
-
-        // CCTV 1 : TEST2
-        url = "rtsp://192.168.43.45:1935"
-        urlList.add(url)
-        nameList.add("테스트2")
-
         // 버튼 초기화
         initButton()
+
+        camId.forEach { getCamIp(it) }
+        timer = timer(period = 3000) {
+            if (camIpMap.size == 2) {
+                timer.cancel()
+                setAndStart()
+            }
+        }
+    }
+
+    private fun setAndStart() {
+        // CCTV 0 : 앞
+        camId.onEach {
+            camIpMap.get(it)?.let { (name, ip) ->
+                urlList.add("rtsp://$ip:1935")
+                nameList.add(name)
+            }
+        }
+        AppData.error(TAG, "ipMap : $camIpMap")
+        runOnUiThread { binding.startButton.performClick() }
     }
 
     private fun initButton() {
@@ -126,6 +151,22 @@ class MainActivity : AppCompatActivity() {
         for (index in videoLayoutList.indices) {
             createRtspViewer(index, videoLayoutList[index])
         }
+    }
+
+    private fun getCamIp(id: String) {
+        val method = object {}.javaClass.enclosingMethod?.name
+        RobotClient.api.getCamIp("123", id).enqueue(object : Callback<DeviceInfoData> {
+            override fun onResponse(call: Call<DeviceInfoData>, response: Response<DeviceInfoData>) {
+                val code = response.code()
+                if (response.isSuccessful) response.body()?.data?.apply {
+                    if (isNotEmpty()) get(0).apply { camIpMap[id] = name to ip }
+                } else AppData.error(TAG, "$method isNotSuccessful. code: $code")
+            }
+
+            override fun onFailure(call: Call<DeviceInfoData>, t: Throwable) {
+                AppData.error(TAG, "$method isFail, ${t.message}")
+            }
+        })
     }
 
     /**
